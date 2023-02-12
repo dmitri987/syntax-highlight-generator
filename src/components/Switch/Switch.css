@@ -20,6 +20,7 @@
     border-radius: 100vmax;
     border-width: 2px;
     border-color: transparent;
+    transition-duration: var(--dur);
   }
 
   /* not overridable (extra class in selector for elevated specificity) */
@@ -35,7 +36,6 @@
     width: var(--inline-size);
     height: var(--block-size);
     background-color: var(--track, var(--switch-track-color, #888));
-    transition-duration: var(--dur);
   }
 
   .switch.track-ctwgsjd[data-headlessui-state="checked"] {
@@ -57,6 +57,7 @@
     pointer-events: none;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
       0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transition-duration: var(--dur);
   }
 
   /* not overridable (extra class in selector for elevated specificity) */
@@ -66,10 +67,9 @@
     width: auto;
     aspect-ratio: 1;
     background-color: var(--thumb, var(--switch-thumb-color, white));
-    transition-duration: var(--dur);
   }
 
-  .switch.thumb-lsujhhbw[data-headlessui-state="checked"] {
+  [data-headlessui-state="checked"] > .thumb-lsujhhbw {
     background-color: var(
       --thumb-checked,
       var(--switch-thumb-color-checked, white)
