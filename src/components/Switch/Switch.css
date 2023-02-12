@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* 
+  | Full name (use in theme)       | Shortcut (use in `className`) | Default Value |
+  |--------------------------------|-------------------------------|---------------|
+  | `--switch-width`               | `[--w:3rem]`                  | `3rem`        |
+  | `--switch-height`              | `[--h:2rem]`                  | `1.7rem`      |
+  | `--switch-transition-duration` | `[--duration:0.5s]`           | `200ms`       |
+  | `--switch-track-color`         | `[--track:light-gray]`        | `#888`        |
+  | `--switch-track-color-checked` | `[--track-checked:blue]`      | `#2b8a91`     |
+  | `--switch-thumb-color`         | `[--thumb:white]`             | `white`       |
+  | `--switch-thumb-color-checked` | `[--thumb-checked:#fff]`      | `white`       |
+*/
+
+  /* defaults overridable with Tailwind utility classes */
+  .track-ctwgsjd {
+    border-radius: 100vmax;
+    border-width: 2px;
+    border-color: transparent;
+  }
+
+  /* not overridable (extra class in selector for elevated specificity) */
+  .switch.track-ctwgsjd {
+    --inline-size: var(--w, var(--switch-width, 3rem));
+    --block-size: var(--h, var(--switch-height, 1.7rem));
+    --dur: var(--duration, var(--switch-transition-duration, 200ms));
+
+    display: flex;
+    justify-items: start;
+    align-items: center;
+    flex-shrink: 0;
+    width: var(--inline-size);
+    height: var(--block-size);
+    background-color: var(--track, var(--switch-track-color, #888));
+    transition-duration: var(--dur);
+  }
+
+  .switch.track-ctwgsjd[data-headlessui-state="checked"] {
+    background-color: var(
+      --track-checked,
+      var(--switch-track-color-checked, #2b8a91)
+    );
+  }
+
+  .vertical.switch.track-ctwgsjd {
+    flex-direction: column-reverse;
+    height: var(--inline-size);
+    width: var(--block-size);
+  }
+
+  /* defaults overridable with Tailwind utility classes */
+  .thumb-lsujhhbw {
+    border-radius: 100%;
+    pointer-events: none;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  /* not overridable (extra class in selector for elevated specificity) */
+  .switch.thumb-lsujhhbw {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1;
+    background-color: var(--thumb, var(--switch-thumb-color, white));
+    transition-duration: var(--dur);
+  }
+
+  .switch.thumb-lsujhhbw[data-headlessui-state="checked"] {
+    background-color: var(
+      --thumb-checked,
+      var(--switch-thumb-color-checked, white)
+    );
+  }
+
+  .vertical > .thumb-lsujhhbw {
+    width: 100%;
+    height: auto;
+  }
+}
