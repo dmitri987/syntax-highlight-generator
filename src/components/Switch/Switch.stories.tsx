@@ -2,8 +2,11 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Switch from "./Switch";
+import "../../index.css";
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+const clss = (...classes: (string | string[] | false | undefined)[]) =>
+  classes.flat().filter(Boolean).join(" ").trim();
+
 export default {
   title: "Syntax Highlight Generator/Switch",
   component: Switch,
@@ -19,72 +22,125 @@ Default.args = {
   vertical: false,
 };
 
+export const RTL = Template.bind({});
+RTL.args = {
+  vertical: false,
+};
+RTL.decorators = [
+  (Story) => (
+    <div dir="rtl">
+      <Story />
+    </div>
+  ),
+];
+
 export const Vertical = Template.bind({});
 Vertical.args = {
   vertical: true,
 };
 
-export const CustomSize = Template.bind({});
-CustomSize.args = {
+export const CustomizedWithTheme = Template.bind({});
+CustomizedWithTheme.args = {
   vertical: false,
-  className: "[--w:10rem] [--h:3rem]",
 };
-CustomSize.argTypes = {
-  className: {
-    options: [
-      "[--w:5rem] [--h:3rem]",
-      "[--w:10rem] [--h:5rem]",
-      "[--w:20rem] [--h:8rem]",
-      "[--w:30rem] [--h:13rem]",
-    ],
-    control: { type: "select" },
-  },
-};
+CustomizedWithTheme.decorators = [
+  (Story) => (
+    <div
+      style={
+        {
+          "--switch-width": "5rem",
+          "--switch-height": "3rem",
+          "--switch-transition-duration": `1.5s`,
+          "--switch-track-color": `LightSteelBlue`,
+          "--switch-track-color-checked": `SteelBlue`,
+          "--switch-thumb-color": `LightCyan`,
+          "--switch-thumb-color-checked": `White`,
+        } as React.CSSProperties
+      }
+    >
+      <Story />
+      <pre>
+        <code>{`
+      Variables applied:
+          "--switch-width": "5rem",
+          "--switch-height": "3rem",
+          "--switch-transition-duration": '1.5s',
+          "--switch-track-color": 'LightSteelBlue',
+          "--switch-track-color-checked": 'SteelBlue',
+          "--switch-thumb-color": 'LightCyan',
+          "--switch-thumb-color-checked": 'White',
+      `}</code>
+      </pre>
+    </div>
+  ),
+];
 
-export const CustomTrackColor = Template.bind({});
-CustomTrackColor.args = {
-  className: "[--track:lavender] [--track-checked:rebeccapurple]",
-};
-CustomTrackColor.argTypes = {
-  className: {
-    options: [
-     "[--track:lavender] [--track-checked:rebeccapurple]",
-     "[--track:lightblue] [--track-checked:royalblue]",
-     "[--track:lightgray] [--track-checked:maroon]",
-    ],
-    control: { type: "select" },
-  },
-};
-
-export const CustomThumbColor = Template.bind({});
-CustomThumbColor.args = {
-  className: "[--thumb:gray] [--thumb-checked:white] [--track:lightgray]",
-};
-
-export const CustomDurationWithCssVar = Template.bind({});
-CustomDurationWithCssVar.args = {
-  className: "[--duration:300ms]",
-};
-CustomDurationWithCssVar.argTypes = {
-  className: {
-    options: [
-     "[--duration:300ms]",
-     "[--duration:500ms]",
-     "[--duration:1s]",
-    ],
-    control: { type: "select" },
-  },
-};
-
-export const CustomDurationWithClasses = Template.bind({});
-CustomDurationWithClasses.args = {
-  className: "duration-1000",
-  thumbClass: "duration-1000",
-};
-
-export const OtherCustomizationsWithClasses = Template.bind({});
-OtherCustomizationsWithClasses.args = {
+export const UtilitiesOverrideTheme = Template.bind({});
+UtilitiesOverrideTheme.args = {
   vertical: false,
-  className: "rounded-lg border-4",
-  thumbClass: "rounded-lg",
+  className:
+    "[--w:10rem] [--h:5rem] duration-500 bg-gray-500 ui-checked:bg-green-600",
+  thumbClass: "bg-yellow-300 ui-checked:bg-yellow-500",
+};
+UtilitiesOverrideTheme.decorators = [
+  (Story) => (
+    <div
+      style={
+        {
+          "--switch-width": "5rem",
+          "--switch-height": "3rem",
+          "--switch-transition-duration": `1.5s`,
+          "--switch-track-color": `LightSteelBlue`,
+          "--switch-track-color-checked": `SteelBlue`,
+          "--switch-thumb-color": `LightCyan`,
+          "--switch-thumb-color-checked": `White`,
+        } as React.CSSProperties
+      }
+    >
+      <Story />
+      <pre>
+        <code>{`
+      Variables applied:
+          "--switch-width": "5rem",
+          "--switch-height": "3rem",
+          "--switch-transition-duration": '1.5s',
+          "--switch-track-color": 'LightSteelBlue',
+          "--switch-track-color-checked": 'SteelBlue',
+          "--switch-thumb-color": 'LightCyan',
+          "--switch-thumb-color-checked": 'White',
+      `}</code>
+      </pre>
+    </div>
+  ),
+];
+
+export const WidthAndHightShortcutsShouldNotWork = Template.bind({});
+WidthAndHightShortcutsShouldNotWork.args = {
+  vertical: false,
+  className: "w-40 h-20",
+};
+
+export const WithRipple = Template.bind({});
+WithRipple.args = {
+  vertical: false,
+  ripple: true,
+};
+
+export const WithRippleOptions = Template.bind({});
+WithRippleOptions.args = {
+  vertical: false,
+  ripple: {
+    color: "red",
+    duration: 300,
+    maxScale: 2,
+    from: 'center',
+  },
+  onChange: (value) => console.log('switch clicked:', value),
+};
+
+export const WithBoundRipple = Template.bind({});
+WithBoundRipple.args = {
+  className: 'overflow-hidden',
+  vertical: false,
+  ripple: true,
 };
