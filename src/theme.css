@@ -11,14 +11,14 @@
 */
 
 :root {
-  --outline-color: hsl(184, 49%, 42%);
-  --accent-color: hsl(184, 92%, 41%);
+  --outline-color: gray;
+  --accent-color: hsl(184, 62%, 31%);
 
-  --switch-width: 5rem;
-  --switch-height: 3rem;
-  --switch-transition-duration: 1.5s;
-  --switch-track-color: LightSteelBlue;
-  --switch-track-color-checked: SteelBlue;
-  --switch-thumb-color: LightCyan;
-  --switch-thumb-color-checked: White;
+  --switch-width: 3rem;
+  --switch-height: 1.7rem;
+  --switch-transition-duration: 0.2s;
+  --switch-track-color: #888;
+  --switch-track-color-checked: var(--accent-color);
+  --switch-thumb-color: white;
+  --switch-thumb-color-checked: white;
 }
