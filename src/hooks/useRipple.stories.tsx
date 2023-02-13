@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import useRipple, {RippleOptions} from "./useRipple";
+import useRipple, { RippleOptions } from "./useRipple";
 import "../index.css";
-import { useState } from "react";
+import { ButtonHTMLAttributes, HTMLAttributes, useState } from "react";
 
 const clss = (...classes: (string | string[] | false | undefined)[]) =>
   classes.flat().filter(Boolean).join(" ").trim();
 
-const Button = (props: RippleOptions) => {
+const Button = (props: RippleOptions & HTMLAttributes<HTMLButtonElement>) => {
   const [element, setElement] = useState<HTMLButtonElement | null>(null);
   useRipple(element, props);
 
@@ -14,7 +14,7 @@ const Button = (props: RippleOptions) => {
     <button
       ref={setElement}
       className="relative overflow-hidden bg-blue-300 border rounded p-2"
-      onClick={() => console.log('button onClick')}
+      onClick={props.onClick}
     >
       With Ripple
     </button>
@@ -31,26 +31,32 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button />;
 
-export const Default = (args: RippleOptions) => (
-  <div className="">
-    <Button {...args} />
-    <pre className="mt-4 bg-gray-800 text-white rounded p-4">
-      <code>{`
-1. Should cancel previous ripple, when new ripple is created
-2. Should ripple when clicked with keyboard
-3. Clicking on target before ripple animation is finished,
-   should trigger 'click' event on the target (see console log)
-    `}</code>
-    </pre>
+const assert = (condition: boolean) =>
+  condition ? (
+    <span className="text-green-500">✓</span>
+  ) : (
+    <span className="text-red-500">🗙</span>
+  );
+
+export const Default = (args: RippleOptions) => {
+  const [clickCount, setClickCount] = useState(0);
+
+  return <div className="">
+    <Button {...args} onClick={() => setClickCount(c => c + 1)} />
+    <ul className="grid gap-3 list-none bg-gray-700 text-white mt-4 p-4 rounded font-mono">
+      <li>Should cancel previous ripple, when new ripple is created</li>
+      <li>Should ripple when clicked with keyboard</li>
+      <li>Clicking on target before ripple animation is finished,
+   should trigger 'click' event on the target: {clickCount}
+      </li>
+    </ul>
   </div>
-);
+ };
 
 Default.args = {
   color: "rgba(255, 255, 255, 0.4)",
   duration: 500,
   maxScale: 1,
-  from: 'cursor',
-}
-Default.argTypes = {
-  
-}
+  from: "cursor",
+};
+Default.argTypes = {};
