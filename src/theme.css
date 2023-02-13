@@ -1,4 +1,24 @@
+/* 
+  | Full name (use in theme)       | Shortcut (use in `className`) | Default Value |
+  |--------------------------------|-------------------------------|---------------|
+  | `--switch-width`               | `[--w:3rem]`                  | `3rem`        |
+  | `--switch-height`              | `[--h:2rem]`                  | `1.7rem`      |
+  | `--switch-transition-duration` | `[--duration:0.5s]`           | `200ms`       |
+  | `--switch-track-color`         | `[--track:light-gray]`        | `#888`        |
+  | `--switch-track-color-checked` | `[--track-checked:blue]`      | `#2b8a91`     |
+  | `--switch-thumb-color`         | `[--thumb:white]`             | `white`       |
+  | `--switch-thumb-color-checked` | `[--thumb-checked:#fff]`      | `white`       |
+*/
+
 :root {
   --outline-color: hsl(184, 49%, 42%);
   --accent-color: hsl(184, 92%, 41%);
+
+  --switch-width: 5rem;
+  --switch-height: 3rem;
+  --switch-transition-duration: 1.5s;
+  --switch-track-color: LightSteelBlue;
+  --switch-track-color-checked: SteelBlue;
+  --switch-thumb-color: LightCyan;
+  --switch-thumb-color-checked: White;
 }
