@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Switch from "./Switch";
 import "../../index.css";
@@ -126,6 +126,8 @@ WithRipple.args = {
   ripple: true,
 };
 
+const onChange = (value: boolean) => { console.log('switch clicked:', value) };
+
 export const WithRippleOptions = Template.bind({});
 WithRippleOptions.args = {
   vertical: false,
@@ -135,7 +137,7 @@ WithRippleOptions.args = {
     maxScale: 2,
     from: 'center',
   },
-  onChange: (value) => console.log('switch clicked:', value),
+  onChange 
 };
 
 export const WithBoundRipple = Template.bind({});
