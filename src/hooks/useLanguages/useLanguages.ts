@@ -5,7 +5,7 @@ import {hljs, prism} from "../useSyntaxHighlight";
 export type Language = {
   name: string;
   engine: "prism" | "hljs";
-  registered: boolean;
+  registered?: boolean;
 };
 
 const allLanguages: Language[] = [
