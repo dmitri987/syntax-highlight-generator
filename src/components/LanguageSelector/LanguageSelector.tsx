@@ -7,6 +7,7 @@ import useLanguages, {
   Language,
   loadLanguage,
 } from "../../hooks/useLanguages/useLanguages";
+import useScroll from "../../hooks/useScroll/useScroll";
 
 type EngineBadgeProps = {
   engine?: "prism" | "hljs";
@@ -34,7 +35,7 @@ type LanguageSelectorProps = {
   onChange: (newLanguage: Language | null) => void;
 };
 
-const MAX_ITEMS_COUNT = 12;
+const ITEMS_PER_PAGE = 12;
 
 let online = true;
 let languages: Language[];
@@ -45,8 +46,21 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
     useState<HTMLInputElement | null>(null);
   const [query, setQuery] = useState("");
   const [innerLanguage, setInnerLanguage] = useState<Language | null>(null);
-  const [showOptions, setShowOptions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [showOptions, setShowOptions] = useState(false);
+  const [optionsElement, setOptionsElement] =
+    useState<HTMLUListElement | null>(null);
+  const [pageCount, setPageCount] = useState(1);
+  const { yProgress = 0 } = useScroll({ container: optionsElement, axis: "y", throttle: 100 });
+
+  useEffect(() => {
+    if (yProgress > 0.9) {
+      setPageCount((pageCount) => pageCount + 1);
+    }
+  }, [yProgress]);
+
+  useEffect(() => setPageCount(1), [query]);
 
   useEffect(() => {
     const hotKey = (e: KeyboardEvent) => {
@@ -180,6 +194,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
             leaveTo="opacity-0"
           >
             <Combobox.Options
+              ref={setOptionsElement}
               static
               className={clss(
                 "absolute translate-y-1 rounded-default w-full bg-default",
@@ -188,7 +203,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                 "h-[200px] overflow-auto"
               )}
             >
-              {filteredList.slice(0, MAX_ITEMS_COUNT).map((lang) => (
+              {filteredList.slice(0, pageCount * ITEMS_PER_PAGE).map((lang) => (
                 <Combobox.Option
                   key={lang.name + "-" + lang.engine}
                   className={clss(
@@ -221,16 +236,6 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                   />
                 </Combobox.Option>
               ))}
-              {filteredList.length > MAX_ITEMS_COUNT && (
-                <div
-                  className={clss(
-                    "w-full pb-2 text-lg tracking-[0.25rem] text-center",
-                    "cursor-default pointer-events-none"
-                  )}
-                >
-                  ...
-                </div>
-              )}
             </Combobox.Options>
           </Transition>
         )}
