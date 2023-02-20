@@ -1,6 +1,6 @@
 import prismLanguages from "./prism-languages";
 import hljsLanguages from "./hljs-languages";
-import {hljs, prism} from "../useSyntaxHighlight";
+import { hljs, prism } from "../useSyntaxHighlight";
 
 export type Language = {
   name: string;
@@ -33,11 +33,11 @@ allLanguages.forEach((item) => {
     },
   });
 });
-Object.freeze(allLanguages)
+Object.freeze(allLanguages);
 
 export default function useLanguages() {
   return allLanguages;
-} 
+}
 
 export async function loadLanguage(
   language: Language | null
