@@ -34,6 +34,8 @@ type LanguageSelectorProps = {
   onChange: (newLanguage: Language | null) => void;
 };
 
+const MAX_ITEMS_COUNT = 12;
+
 let online = true;
 let languages: Language[];
 
@@ -54,7 +56,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
     };
     window.addEventListener("keyup", hotKey);
     return () => window.removeEventListener("keyup", hotKey);
-  }, []);
+  }, [inputElement]);
 
   useEffect(() => {
     if (!language || language === innerLanguage) return;
@@ -171,15 +173,15 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                 "absolute translate-y-1 rounded-default w-full bg-default",
                 "scrollbar-thin scrollbar-rounded",
                 "border-2 outline-0 outline-active",
-                "h-[200px] overflow-auto cursor-pointer"
+                "h-[200px] overflow-auto"
               )}
             >
-              {filteredList.slice(0, 10).map((lang) => (
+              {filteredList.slice(0, MAX_ITEMS_COUNT).map((lang) => (
                 <Combobox.Option
                   key={lang.name + "-" + lang.engine}
                   className={clss(
                     "grid grid-cols-[1fr_2rem_5rem] items-center px-2 py-1 border-b",
-                    "text-gray-800",
+                    "text-gray-800 cursor-pointer",
                     lang.engine === "hljs"
                       ? [
                           lang.registered && "bg-hljs-light",
@@ -207,6 +209,16 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                   />
                 </Combobox.Option>
               ))}
+              {filteredList.length > MAX_ITEMS_COUNT && (
+                <div
+                  className={clss(
+                    "w-full pb-2 text-lg tracking-[0.25rem] text-center",
+                    "cursor-default pointer-events-none"
+                  )}
+                >
+                  ...
+                </div>
+              )}
             </Combobox.Options>
           </Transition>
         )}
