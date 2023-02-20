@@ -109,6 +109,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
             className={clss(
               "w-full p-2 text-left rounded-lg",
               "border outline-0 outline-default disabled:outline-disabled",
+              "bg-white text-gray-800 caret-gray-800",
               "focus:outline-1 focus:outline-active"
             )}
             displayValue={(lang: Language) => lang?.name ?? ""}

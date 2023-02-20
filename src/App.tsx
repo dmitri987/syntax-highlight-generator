@@ -119,7 +119,7 @@ function App() {
         resize-none p-4 rounded-default font-mono
         border border-default focus:border-active
         scrollbar-thin scrollbar-rounded
-        bg-light text-gray-800
+        bg-light text-gray-800 caret-gray-800
       `}
           debounce={500}
           onChange={setRawText}

@@ -72,7 +72,7 @@ export default function OptionsPanel({
         <Input
           className={clss(
             "w-full mb-5 md:mb-0 p-2 rounded-default transition placeholder:italic",
-            "bg-white disabled:bg-disabled",
+            "bg-white disabled:bg-disabled text-gray-800 caret-gray-800",
             "border outline-0 outline-default disabled:outline-disabled",
             "focus:outline-1 focus:outline-active"
           )}
@@ -100,7 +100,7 @@ export default function OptionsPanel({
         <Input
           className={clss(
             "w-full mb-5 md:mb-0 p-2 rounded-default transition placeholder:italic",
-            "bg-white disabled:bg-disabled",
+            "bg-white disabled:bg-disabled text-gray-800 caret-gray-800",
             "border outline-0 outline-default disabled:outline-disabled",
             "focus:outline-1 focus:outline-active"
           )}
@@ -120,7 +120,7 @@ export default function OptionsPanel({
           id="preclass-input"
           className={clss(
             "w-full mb-5 md:mb-0 p-2 rounded-default transition placeholder:italic",
-            "bg-white disabled:bg-disabled",
+            "bg-white disabled:bg-disabled text-gray-800 caret-gray-800",
             "border outline-0 outline-default disabled:outline-disabled",
             "focus:outline-1 focus:outline-active"
           )}
@@ -139,7 +139,7 @@ export default function OptionsPanel({
           id="codeclass-input"
           className={clss(
             "w-full md:mb-0 p-2 rounded-default transition placeholder:italic",
-            "bg-white disabled:bg-disabled",
+            "bg-white disabled:bg-disabled text-gray-800 caret-gray-800",
             "border outline-0 outline-default disabled:outline-disabled",
             "focus:outline-1 focus:outline-active"
           )}
