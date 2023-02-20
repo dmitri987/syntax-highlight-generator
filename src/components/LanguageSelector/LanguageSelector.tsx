@@ -1,7 +1,7 @@
 import useFilter from "../../hooks/useFilter";
 import { useCallback, useEffect, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
-import { XMarkIcon, ArrowDownCircleIcon } from "@heroicons/react/20/solid";
+import { XMarkIcon, ArrowDownCircleIcon } from "../../assets/icons";
 import { clss } from "../../utils";
 import useLanguages, {
   Language,
@@ -30,7 +30,7 @@ function EngineBadge({ engine, className }: EngineBadgeProps) {
 }
 
 type LanguageSelectorProps = {
-  language: Language | null;
+  language?: Language | null;
   onChange: (newLanguage: Language | null) => void;
 };
 

@@ -9,9 +9,10 @@ import { clss } from "./utils";
 import {
   ClipboardDocumentCheckIcon,
   ExclamationCircleIcon,
-} from "@heroicons/react/20/solid";
+} from "./assets/icons";
 import Input from "./components/Input/Input";
 prism.registerLanguage(jsxSyntax);
+
 
 const exampleText = `// https://google.com
 function example() {
