@@ -59,14 +59,11 @@ export default function OptionsPanel({
       >
         <div className="flex justify-between gap-4 mb-2 md:mb-0">
           <label htmlFor="wrap-lines-toggle" className="">
-            Wrap Lines in{" "}
-            <code className="text-purple-500">
-              &lt;span&gt;
-            </code>
+            Wrap Lines in <code className="text-purple-500">&lt;span&gt;</code>
           </label>
           <Switch
             id="wrap-lines-toggle"
-            className="ui-checked:bg-accent"
+            className="ui-checked:bg-accent outline-transparent focus:outline-active outline-offset-1"
             thumbClass=""
             checked={wrapLinesChecked}
             onChange={setWrapLinesChecked}
@@ -90,14 +87,11 @@ export default function OptionsPanel({
         <div className="flex justify-between gap-4 mb-2 md:mb-0">
           <label htmlFor="autolink-toggle" className="">
             Turn URLs, emails, `tel:` to links (
-            <code className="text-purple-500">
-              &lt;a&gt;
-            </code>
-            )
+            <code className="text-purple-500">&lt;a&gt;</code>)
           </label>
           <Switch
             id="autolink-toggle"
-            className="ui-checked:bg-accent"
+            className="ui-checked:bg-accent outline-transparent focus:outline-active outline-offset-1"
             thumbClass=""
             checked={autolinkChecked}
             onChange={setAutolinkChecked}
@@ -119,10 +113,7 @@ export default function OptionsPanel({
         />
 
         <label htmlFor="preclass-input" className="inline-block mb-2 md:mb-0">
-          Classes for{" "}
-            <code className="text-purple-500">
-            &lt;pre&gt;
-          </code>{" "}
+          Classes for <code className="text-purple-500">&lt;pre&gt;</code>{" "}
           element
         </label>
         <Input
@@ -141,10 +132,7 @@ export default function OptionsPanel({
         />
 
         <label htmlFor="codeclass-input" className="inline-block mb-2 md:mb-0">
-          Classes for{" "}
-            <code className="text-purple-500">
-            &lt;code&gt;
-          </code>{" "}
+          Classes for <code className="text-purple-500">&lt;code&gt;</code>{" "}
           element
         </label>
         <Input

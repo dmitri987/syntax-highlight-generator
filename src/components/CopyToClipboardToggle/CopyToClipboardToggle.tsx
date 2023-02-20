@@ -18,7 +18,7 @@ export default function CopyToClipboardToggle(props: Props) {
       </label>
       <Switch
         id="autocopy-to-clipboard"
-        className="ui-checked:bg-accent"
+        className="ui-checked:bg-accent outline-transparent focus:outline-active outline-offset-1"
         title="Auto copy to clipboard on any change of text or settings. Allow reading clipboard content in the browser when asked"
         {...props}
       />
