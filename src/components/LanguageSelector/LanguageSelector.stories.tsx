@@ -1,8 +1,9 @@
 import type { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import LanguageSelector, {Language} from "./LanguageSelector";
+import LanguageSelector from "./LanguageSelector";
 import "../../index.css";
 import {useState} from "react";
+import {Language} from "../../hooks/useLanguages/useLanguages";
 
 export default {
   title: "Syntax Highlight Generator/LanguageSelector",

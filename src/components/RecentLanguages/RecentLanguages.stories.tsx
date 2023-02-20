@@ -3,7 +3,7 @@ import type { ComponentStory, ComponentMeta } from "@storybook/react";
 import RecentLanguages from "./RecentLanguages";
 import "../../index.css";
 import { useState } from "react";
-import {Language} from "../LanguageSelector/LanguageSelector";
+import {Language} from "../../hooks/useLanguages/useLanguages";
 
 export default {
   title: "Syntax Highlight Generator/RecentLanguages",
@@ -13,7 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof RecentLanguages>;
 
-const languages = [
+const languages: Language[] = [
   { name: "cpp", engine: "prism" as const },
   { name: "java", engine: "hljs" as const },
   { name: "rust", engine: "prism" as const },
