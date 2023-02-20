@@ -44,6 +44,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
   const [query, setQuery] = useState("");
   const [innerLanguage, setInnerLanguage] = useState<Language | null>(null);
   const [showOptions, setShowOptions] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const hotKey = (e: KeyboardEvent) => {
@@ -71,7 +72,9 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
       setInnerLanguage(language);
       setShowOptions(!language);
       setQuery(language?.name ?? "");
+      setIsLoading(false);
     });
+    setIsLoading(true);
   }, []);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,6 +122,17 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
             autoComplete="off"
           />
           <div className="absolute flex content-center items-center gap-2 right-2 justify-right">
+            {isLoading && (
+              <span
+                className={clss(
+                  "inline-block w-5 h-5 mx-2 rounded-full",
+                  "border-2 border-t-0 border-r-0 animate-spin",
+                  innerLanguage?.engine === "hljs"
+                    ? "outline-hljs-active"
+                    : "outline-prism-active"
+                )}
+              ></span>
+            )}
             {query && (
               <>
                 <EngineBadge engine={innerLanguage?.engine} className="" />
@@ -129,6 +143,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                   )}
                   aria-hidden="true"
                   onClick={() => {
+                    console.log("onClick");
                     selectLanguage(null);
                     setQuery("");
                     inputElement?.focus();
