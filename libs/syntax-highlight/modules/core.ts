@@ -169,7 +169,7 @@ export function highlight(
     codeClass,
   } = resolveOptions(languageOrOptions);
   const lib = parsingEngine === "hljs" ? hljs : prism;
-  const language = lib.registered(_lang) ? _lang : "text";
+  const language = _lang && lib.registered(_lang) ? _lang : "text";
   const root = lib.highlight(text, language);
   if (!root) return null;
 
