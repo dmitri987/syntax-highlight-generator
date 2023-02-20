@@ -118,8 +118,19 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
             onClick={() => setShowOptions(true)}
             onBlur={() => setShowOptions(false)}
             onKeyUp={(e: React.KeyboardEvent) => {
-              if (e.code === "ArrowDown" && !showOptions)
-                return setShowOptions(true);
+              if (e.code === "ArrowDown" && !showOptions) {
+                setShowOptions(true);
+                return;
+              }
+
+              if (e.code === "Escape") {
+                if (showOptions) {
+                  setShowOptions(false);
+                } else {
+                  selectLanguage(null);
+                }
+                return;
+              }
             }}
             placeholder="Press 'Ctrl + /' to search language"
             autoComplete="off"
@@ -148,7 +159,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                   onClick={() => {
                     console.log("onClick");
                     selectLanguage(null);
-                    setQuery("");
+                    // setQuery("");
                     inputElement?.focus();
                   }}
                 />
