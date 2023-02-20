@@ -1,9 +1,9 @@
-'use client'
+// 'use client'
 
 import {ReactElement, ReactNode, useEffect, useRef} from "react";
-import {react} from "../../libs/syntax-highlight";
+import react from "../../libs/syntax-highlight/modules/react";
 export { prism, hljs } from '../../libs/syntax-highlight/modules/core';
-import type { Options } from "../../libs/syntax-highlight";
+import type { Options } from "../../libs/syntax-highlight/modules/core";
 
 export type SyntaxHighlightOptions = Options;
 
