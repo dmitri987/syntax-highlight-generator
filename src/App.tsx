@@ -70,6 +70,7 @@ function App() {
         <a
           href="https://prismjs.com/"
           className="text-teal-600 font-medium underline"
+          tabIndex={-1}
         >
           Prism.js
         </a>{" "}
@@ -77,6 +78,7 @@ function App() {
         <a
           href="https://highlightjs.org/"
           className="text-sky-600 font-medium underline"
+          tabIndex={-1}
         >
           Highlight.js
         </a>{" "}
