@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { hljs, html, jsx, Options, prism } from "../libs/syntax-highlight";
+import { html, jsx, Options, prism } from "../libs/syntax-highlight";
 import Code from "./components/Code/Code";
 import Toolbar, { Settings } from "./components/Toolbar/Toolbar";
 
