@@ -1,24 +1,112 @@
-/* 
-  | Full name (use in theme)       | Shortcut (use in `className`) | Default Value |
-  |--------------------------------|-------------------------------|---------------|
-  | `--switch-width`               | `[--w:3rem]`                  | `3rem`        |
-  | `--switch-height`              | `[--h:2rem]`                  | `1.7rem`      |
-  | `--switch-transition-duration` | `[--duration:0.5s]`           | `200ms`       |
-  | `--switch-track-color`         | `[--track:light-gray]`        | `#888`        |
-  | `--switch-track-color-checked` | `[--track-checked:blue]`      | `#2b8a91`     |
-  | `--switch-thumb-color`         | `[--thumb:white]`             | `white`       |
-  | `--switch-thumb-color-checked` | `[--thumb-checked:#fff]`      | `white`       |
-*/
+@layer utilities {
+  .rounded-default {
+    @apply rounded-lg;
+  }
+  .rounded-l-default {
+    @apply rounded-l-lg;
+  }
+  .rounded-r-default {
+    @apply rounded-r-lg;
+  }
 
-:root {
-  --outline-color: gray;
-  --accent-color: hsl(184, 62%, 31%);
+  .bg-default {
+    @apply bg-white;
+  }
+  .bg-disabled {
+    @apply bg-gray-100;
+  }
 
-  --switch-width: 3rem;
-  --switch-height: 1.7rem;
-  --switch-transition-duration: 0.2s;
-  --switch-track-color: #888;
-  --switch-track-color-checked: var(--accent-color);
-  --switch-thumb-color: white;
-  --switch-thumb-color-checked: white;
+  .border-default {
+    @apply border-gray-400;
+  }
+
+  .text-icon-muted {
+    @apply text-gray-400/75;
+  }
+  .text-icon-active {
+    @apply text-gray-600;
+  }
+
+  .outline-default,
+  .border-default {
+    @apply outline-gray-400 border-gray-400;
+  }
+  .outline-disabled,
+  .border-disabled {
+    @apply outline-gray-300 border-gray-300;
+  }
+  .outline-checked,
+  .border-checked {
+    @apply outline-gray-400 border-gray-400;
+  }
+  .outline-active,
+  .border-active {
+    @apply outline-gray-500 border-gray-500;
+  }
+
+  /** prism **/
+  .prism-theme .bg-light,
+  .bg-prism-light {
+    @apply bg-teal-50;
+  }
+  .bg-prism {
+    @apply bg-teal-100;
+  }
+  .prism-theme .bg-dark,
+  .bg-prism-dark {
+    @apply bg-teal-500/30;
+  }
+  .prism-theme .bg-accent,
+  .bg-prism-accent {
+    @apply bg-teal-600;
+  }
+
+  .prism-theme :is(.outline-checked, .border-checked),
+  .outline-prism-checked,
+  .border-prism-checked {
+    @apply outline-teal-400 border-teal-400;
+  }
+  .prism-theme :is(.outline-active, .border-active),
+  .outline-prism-active,
+  .outline-prism-actve {
+    @apply outline-teal-600 border-teal-600;
+  }
+
+  .prism-theme .fill-active,
+  .fill-prism-active {
+    @apply fill-teal-600;
+  }
+
+  /** hljs **/
+  .hljs-theme .bg-light,
+  .bg-hljs-light {
+    @apply bg-sky-50;
+  }
+  .bg-hljs {
+    @apply bg-sky-100;
+  }
+  .hljs-theme .bg-dark,
+  .bg-hljs-dark {
+    @apply bg-sky-500/30;
+  }
+  .hljs-theme .bg-accent,
+  .bg-hljs-accent {
+    @apply bg-sky-600;
+  }
+
+  .hljs-theme :is(.outline-checked, .border-checked),
+  .outline-hljs-checked,
+  .border-hljs-checked {
+    @apply outline-sky-400 border-sky-400;
+  }
+  .hljs-theme :is(.outline-active, .border-active),
+  .outline-hljs-active,
+  .outline-hljs-actve {
+    @apply outline-sky-600 border-sky-600;
+  }
+
+  .hljs-theme .fill-active,
+  .fill-hljs-active {
+    @apply fill-sky-600;
+  }
 }
