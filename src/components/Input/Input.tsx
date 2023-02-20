@@ -1,5 +1,6 @@
 import {
   ChangeEvent,
+  createElement,
   FocusEvent,
   ForwardedRef,
   forwardRef,
@@ -11,33 +12,34 @@ import {
 } from "react";
 // import useMask, { Mask, OnInvalidMask } from "../hooks/useMask";
 
-const clss = (...classes: (string | undefined)[]) =>
-  classes.filter(Boolean).join(" ");
-
 export type InputProps = {
+  as?: "input" | "textarea";
   defaultValue?: string;
   value?: string;
   onChange?: (value: string) => void;
   debounce?: number;
   // mask?: Mask;
   // onInvalidMask?: OnInvalidMask;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, "onChange">;
+} & Omit<
+  InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
+  "onChange"
+>;
 
 /*
  * Usage:
  *
- * --- `debounce`
+ * - `debounce`
  * Debounce update of external state by 'debounce' ms
  * Update immediately on 'blur' event (when input looses focus)
  *
- * --- Ref
+ * - Ref
  * Can forward ref to <input> element underneath
  * Pass all attributes to <input> element
  *
- * --- onChange 
+ * - onChange
  * onChange has HeadlessUI signature:
  * 'onChange(value: any) => void', not 'onChange(e: Event) => void'
- * 
+ *
  *
  *
  *
@@ -46,6 +48,7 @@ export type InputProps = {
 // TODO: rethink onInvalidMask arguments
 function Input(
   {
+    as,
     defaultValue,
     value,
     onChange,
@@ -54,12 +57,12 @@ function Input(
     className,
     // mask,
     // onInvalidMask,
-    ...inputProps
+    ...attributes
   }: InputProps,
-  externalRef: ForwardedRef<HTMLInputElement>
+  externalRef: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>
 ) {
-  const [inputElement, setInputElement] =
-    useState<HTMLInputElement | null>(null);
+  const [element, setElement] =
+    useState<HTMLInputElement | HTMLTextAreaElement | null>(null);
   const debounceId = useRef<NodeJS.Timeout>();
 
   const onChangeHandle = useCallback(
@@ -85,31 +88,29 @@ function Input(
 
   const bindRef = useCallback(
     (instance: HTMLInputElement) => {
-      setInputElement(instance);
+      setElement(instance);
       if (!externalRef) return;
 
-      if (externalRef instanceof Function) externalRef(inputElement);
-      else externalRef.current = inputElement;
+      if (externalRef instanceof Function) externalRef(element);
+      else externalRef.current = element;
     },
-    [externalRef, inputElement]
+    [externalRef, element]
   );
 
   useEffect(() => {
-    if (value !== undefined && inputElement) inputElement.value = value;
-  }, [value, inputElement]);
+    if (value !== undefined && element) element.value = value;
+  }, [value, element]);
 
   // useMask(mask, inputElement, onInvalidMask);
 
-  return (
-    <input
-      ref={bindRef}
-      defaultValue={defaultValue}
-      onChange={onChangeHandle}
-      onBlur={onBlurHandle}
-      className={clss("input-1x5jdmq ", className)}
-      {...inputProps}
-    />
-  );
+  return createElement(as ?? "input", {
+    ref: bindRef,
+    defaultValue,
+    onChange: onChangeHandle,
+    onBlur: onBlurHandle,
+    className,
+    ...attributes,
+  });
 }
 
 export default forwardRef(Input);
