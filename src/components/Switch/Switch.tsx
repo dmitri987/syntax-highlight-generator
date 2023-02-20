@@ -1,5 +1,5 @@
 import { Switch } from "@headlessui/react";
-import { RefObject, useState } from "react";
+import { useState } from "react";
 import type { RippleOptions } from "../../hooks/useRipple";
 import useRipple from "../../hooks/useRipple";
 import "./Switch.css";
@@ -10,13 +10,16 @@ const clss = (...classes: (string | string[] | false | undefined)[]) =>
 type Props = {
   /* pass this to the root element */
   className?: string;
+
   /* Pass this to 'className' of the thumb */
   thumbClass?: string;
+
   /* In vertical mode switch 'height' and 'width'.
    * Also in inactive state thumb is always down
    * no matter RTL direction
    */
   vertical?: boolean;
+
   /* RippleOptions: {
    *   color?: string;
    *   duration?: number;
@@ -27,7 +30,7 @@ type Props = {
    * If false, no ripple effect.
    *
    * Tip: set 'overflow-hidden' on Switch to limit
-   * ripple circle by the switch bounds
+   * ripple circle with the switch bounds
    */
   ripple?: boolean | RippleOptions;
 } & Parameters<typeof Switch>[0];
@@ -41,7 +44,7 @@ type Props = {
  *
  * Important:
  * To style 'checked' state you need to use @headlesui/tailwindcss plugin.
- * It adds modifiers like 'ui-checked' or 'ui-not-open'.
+ * It adds modifiers like 'ui-checked' or 'ui-not-checked'.
  * See https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-tailwindcss
  *
  * Also you can not use 'w' and 'h' Tailwind shortcuts (like 'w-4', 'h-1/2').

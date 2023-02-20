@@ -7,7 +7,7 @@
   background-color: var(--switch-track-color, #888);
 }
 
-.track-ctwgsjd[data-headlessui-state="checked"] {
+.track-ctwgsjd:where([data-headlessui-state="checked"]) {
   background-color: var(--switch-track-color-checked, #2b8a91);
 }
 
