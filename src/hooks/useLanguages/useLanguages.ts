@@ -58,6 +58,7 @@ export async function loadLanguage(
       hljs.registerLanguage(syntax, language.name);
     }
   } catch (err) {
+    console.error(err);
     throw language;
   }
 

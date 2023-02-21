@@ -1,7 +1,11 @@
 import useFilter from "../../hooks/useFilter";
 import { useCallback, useEffect, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
-import { XMarkIcon, ArrowDownCircleIcon } from "../../assets/icons";
+import {
+  XMarkIcon,
+  ArrowDownCircleIcon,
+  ExclamationCircleIcon,
+} from "../../assets/icons";
 import { clss } from "../../utils";
 import useLanguages, {
   Language,
@@ -46,7 +50,9 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
     useState<HTMLInputElement | null>(null);
   const [query, setQuery] = useState("");
   const [innerLanguage, setInnerLanguage] = useState<Language | null>(null);
+
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingError, setLoadingError] = useState(false);
 
   const [showOptions, setShowOptions] = useState(false);
   const [optionsElement, setOptionsElement] =
@@ -87,17 +93,23 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
   }, [innerLanguage]);
 
   const selectLanguage = useCallback((lang: Language | null) => {
-    loadLanguage(lang).then((language) => {
-      setInnerLanguage(language);
-      setShowOptions(!language);
-      setIsLoading(false);
-    });
+    loadLanguage(lang)
+      .then((language) => {
+        setInnerLanguage(language);
+        setShowOptions(!language);
+      })
+      .catch(() => {
+        setLoadingError(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
     setIsLoading(true);
   }, []);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-    setShowOptions(true);
+    // setShowOptions(true);
   };
 
   if (navigator.onLine) {
@@ -130,7 +142,10 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
             )}
             displayValue={() => query}
             onChange={onInputChange}
-            onFocus={() => setShowOptions(true)}
+            onFocus={() => {
+              setShowOptions(true);
+              setLoadingError(false);
+            }}
             onClick={() => setShowOptions(true)}
             onBlur={() => setShowOptions(false)}
             onKeyDown={(e: React.KeyboardEvent) => {
@@ -164,6 +179,12 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                     : "outline-prism-active"
                 )}
               ></span>
+            )}
+            {loadingError && (
+              <ExclamationCircleIcon
+                className="w-5 h-5 mx-2 fill-transparent stroke-red-700 stroke-1"
+                title="Language loading error. See Console Log (F12) for details"
+              />
             )}
             {query && (
               <>
