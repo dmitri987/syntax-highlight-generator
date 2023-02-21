@@ -126,7 +126,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
               "bg-white text-gray-800 caret-gray-800",
               "focus:outline-1 focus:outline-active"
             )}
-            displayValue={(lang: Language) => lang?.name ?? ""}
+            displayValue={() => query}
             onChange={onInputChange}
             onFocus={() => setShowOptions(true)}
             onClick={() => setShowOptions(true)}
@@ -161,7 +161,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                 )}
               ></span>
             )}
-            {query && (
+            {query === innerLanguage?.name && (
               <>
                 <EngineBadge engine={innerLanguage?.engine} className="" />
                 <XMarkIcon
@@ -171,9 +171,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                   )}
                   aria-hidden="true"
                   onClick={() => {
-                    console.log("onClick");
                     selectLanguage(null);
-                    // setQuery("");
                     inputElement?.focus();
                   }}
                 />
@@ -202,6 +200,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                 "border-2 outline-0 outline-active",
                 "h-[200px] overflow-auto"
               )}
+              onBlur={() => setQuery(innerLanguage?.name ?? "")}
             >
               {filteredList.slice(0, pageCount * ITEMS_PER_PAGE).map((lang) => (
                 <Combobox.Option
