@@ -64,7 +64,7 @@ function App() {
   );
 
   return (
-    <>
+    <div dir="ltr">
       <p className="text-lg mb-4 ">
         Create markup, highlighted with{" "}
         <a
@@ -164,7 +164,7 @@ function App() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
