@@ -1,8 +1,8 @@
 module.exports = {
-  sourceType: 'module',
+  sourceType: "module",
   plugins: {
-    'postcss-import': {},
+    "postcss-import": {},
     tailwindcss: {},
     autoprefixer: {},
   },
-}
+};
