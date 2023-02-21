@@ -1,5 +1,5 @@
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
-import { throttle } from "lodash";
+import { RefObject, useEffect, useRef, useState } from "react";
+import throttle from "lodash/throttle";
 
 export type ScrollCoordinates = {
   x?: number; // scrollLeft
@@ -23,7 +23,7 @@ const resolveElement = (
     ? ref.current!
     : ref;
 
-// return empty object initially 
+// return empty object initially
 function useScroll({
   container,
   axis,
@@ -37,7 +37,6 @@ function useScroll({
 
     const _container = resolveElement(container);
 
-    console.log(_container)
     // use 'window' for global scroll because 'html' doesn't seem to trigger scroll ??
     const target =
       _container === document.documentElement ? window : _container;
@@ -62,7 +61,7 @@ function useScroll({
         };
 
         if (newCoords) {
-          trigger(t => !t)
+          trigger((t) => !t);
           coordsRef.current = newCoords;
         }
       }
@@ -77,3 +76,4 @@ function useScroll({
 }
 
 export default useScroll;
+
