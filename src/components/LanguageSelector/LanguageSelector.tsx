@@ -133,13 +133,19 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
             onFocus={() => setShowOptions(true)}
             onClick={() => setShowOptions(true)}
             onBlur={() => setShowOptions(false)}
-            onKeyUp={(e: React.KeyboardEvent) => {
-              if (e.code === "ArrowDown" && !showOptions) {
+            onKeyDown={(e: React.KeyboardEvent) => {
+              console.log(e);
+              if (
+                (e.code === "ArrowDown" || (e.code === "KeyJ" && e.ctrlKey)) &&
+                !showOptions
+              ) {
+                e.preventDefault();
                 setShowOptions(true);
                 return;
               }
 
               if (e.code === "Escape") {
+                e.preventDefault();
                 if (showOptions) {
                   setShowOptions(false);
                 } else {
