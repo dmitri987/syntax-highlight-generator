@@ -52,7 +52,11 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
   const [optionsElement, setOptionsElement] =
     useState<HTMLUListElement | null>(null);
   const [pageCount, setPageCount] = useState(1);
-  const { yProgress = 0 } = useScroll({ container: optionsElement, axis: "y", throttle: 100 });
+  const { yProgress = 0 } = useScroll({
+    container: optionsElement,
+    axis: "y",
+    throttle: 100,
+  });
 
   useEffect(() => {
     if (yProgress > 0.9) {
@@ -76,7 +80,6 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
     if (!language || language === innerLanguage) return;
 
     setInnerLanguage(language);
-    setQuery(language?.name ?? "");
   }, [language]);
 
   useEffect(() => {
@@ -87,7 +90,6 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
     loadLanguage(lang).then((language) => {
       setInnerLanguage(language);
       setShowOptions(!language);
-      setQuery(language?.name ?? "");
       setIsLoading(false);
     });
     setIsLoading(true);
@@ -141,7 +143,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                 if (showOptions) {
                   setShowOptions(false);
                 } else {
-                  selectLanguage(null);
+                  setQuery("");
                 }
                 return;
               }
@@ -161,9 +163,8 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                 )}
               ></span>
             )}
-            {query === innerLanguage?.name && (
+            {query && (
               <>
-                <EngineBadge engine={innerLanguage?.engine} className="" />
                 <XMarkIcon
                   className={clss(
                     "w-5 h-5 cursor-pointer",
@@ -171,7 +172,8 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                   )}
                   aria-hidden="true"
                   onClick={() => {
-                    selectLanguage(null);
+                    setQuery("");
+                    // selectLanguage(null);
                     inputElement?.focus();
                   }}
                 />
@@ -200,7 +202,6 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
                 "border-2 outline-0 outline-active",
                 "h-[200px] overflow-auto"
               )}
-              onBlur={() => setQuery(innerLanguage?.name ?? "")}
             >
               {filteredList.slice(0, pageCount * ITEMS_PER_PAGE).map((lang) => (
                 <Combobox.Option
