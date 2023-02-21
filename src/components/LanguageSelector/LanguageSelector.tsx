@@ -134,11 +134,7 @@ function LanguageSelector({ language, onChange }: LanguageSelectorProps) {
             onClick={() => setShowOptions(true)}
             onBlur={() => setShowOptions(false)}
             onKeyDown={(e: React.KeyboardEvent) => {
-              console.log(e);
-              if (
-                (e.code === "ArrowDown" || (e.code === "KeyJ" && e.ctrlKey)) &&
-                !showOptions
-              ) {
+              if (e.code === "ArrowDown" && !showOptions) {
                 e.preventDefault();
                 setShowOptions(true);
                 return;
