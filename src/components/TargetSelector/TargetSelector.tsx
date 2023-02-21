@@ -1,4 +1,5 @@
 import { RadioGroup } from "@headlessui/react";
+import { useEffect, useRef, useState } from "react";
 
 type MaybeClassName = string | false | null | undefined;
 const clss = (...classes: (MaybeClassName | MaybeClassName[])[]) =>
@@ -40,11 +41,9 @@ function SegmentedButtons<T extends string | { label: string } = string>({
           as="button"
           value={value}
           className={clss(
-            "w-full z-0",
-            "border border-r-0 last:border-r last:translate-x-[-1px]",
-            "rtl:border-l-0 rtl:last:border-l rtl:last:translate-x-[1px]",
-            "first:rounded-l-default last:rounded-r-default px-2 py-1",
-            "border border-default",
+            "w-full px-2 py-1 z-0 border border-default",
+            "border-r-0 last:border-r last:translate-x-[-1px]",
+            "first:rounded-l-default last:rounded-r-default",
             "group-focus-within:border-active",
             "ui-checked:bg-dark",
             "ui-active:outline ui-active:outline-1 ui-active:outline-active"

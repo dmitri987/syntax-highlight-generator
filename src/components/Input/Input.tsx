@@ -102,7 +102,6 @@ function Input(
   }, [value, element]);
 
   // useMask(mask, inputElement, onInvalidMask);
-
   return createElement(as ?? "input", {
     ref: bindRef,
     defaultValue,

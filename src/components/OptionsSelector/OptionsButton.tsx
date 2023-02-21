@@ -31,7 +31,7 @@ export default function OptionsButton({
       )}
       onClick={onClick}
     >
-      <span className="ml-1 pb-0.5">Options</span>
+      <span className="mx-2 pb-0.5">Options</span>
       <ChevronUpIcon
         className={clss(
           "w-5 h-5 mx-1 transition",
