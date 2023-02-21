@@ -69,7 +69,7 @@ function App() {
         Create markup, highlighted with{" "}
         <a
           href="https://prismjs.com/"
-          className="text-teal-600 font-medium underline"
+          className="text-teal-700 font-medium underline"
           tabIndex={-1}
         >
           Prism.js
@@ -77,7 +77,7 @@ function App() {
         or{" "}
         <a
           href="https://highlightjs.org/"
-          className="text-sky-600 font-medium underline"
+          className="text-sky-700 font-medium underline"
           tabIndex={-1}
         >
           Highlight.js
